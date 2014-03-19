@@ -1,1 +1,1 @@
-# A little scss framework 
+# A little scss framework on top of compass
