@@ -1,0 +1,87 @@
+// =============================================
+//
+//	Fonts Mixins
+//
+// =============================================
+
+//	
+//	@mixin font-face
+//	@param $fontPath {String} relative or absolute path to font parent folder
+//	@param $fontFileName {String} font file name without extension (should be the same for each format)
+//	@param $fontName {String} Unique name to identify your font (and use it with "font-family" if you wish)
+//	@param $className {String} Unique class name to extend for futur use (will generate %className)
+//
+// 	@desc:
+// 		Easily define a new font-face
+//
+@mixin font-face($fontPath, $fontFileName, $fontName, $className:null){
+	@font-face {
+	    font-family: "#{$fontName}";
+	    src: url("#{$fontPath}#{$fontFileName}.eot?") format("eot");
+	    src: url("#{$fontPath}#{$fontFileName}.eot?#iefix") format("opentype"),
+	         url("#{$fontPath}#{$fontFileName}.woff") format("woff"),
+	         url("#{$fontPath}#{$fontFileName}.ttf") format("truetype"),
+	         url("#{$fontPath}#{$fontFileName}.svg##{$fontName}") format("svg");
+	    font-weight: normal;
+	    font-style: normal;
+	}
+
+	@if $className {
+		%#{$className} {
+			font-family: $fontName;
+			font-weight: normal;
+		    font-style: normal;
+		    text-decoration: none;
+		}
+	}
+}
+
+
+//	
+//	@mixin create-icons-classes
+//	@param $fontClass {String} font class to extend all icons (ex: "%fontIcons", ".fontIcons")
+//	@param $fontFileName {String} font file name without extension (should be the same for each format)
+//	@param $fontName {String} Unique name to identify your font (and use it with "font-family" if you wish)
+//	@param $className {String} Unique class name to extend for futur use (will generate %className)
+//
+// 	@desc:
+// 		Create icons classes
+//		I basically use it to create each ".icon-" class of my custom font icon
+//
+@mixin create-icons-classes($fontClass, $iconList)
+{
+	@each $icon in $iconList {
+		$name: nth($icon, 1);
+		$code: nth($icon, 2);
+		.icon-#{$name} {
+			&:before {
+				@extend #{$fontClass};
+				content: $code;
+			
+				@if (length($icon)>2) {
+					color: nth($icon, 3) !important;
+				}
+			}
+		}
+	}
+}
+
+//	
+//	@mixin set-font-size
+//	@param $to-size {px} font size in pixel that you want to convert
+//	@param $from-size {px} relative font size [default: $base-font-size]
+//
+// 	@desc:
+// 		Define a relative font size
+//
+@mixin relative-font-size($to-size, $from-size: $base-font-size){
+	font-size: $font-unit * $to-size / $from-size;
+}
+
+
+
+
+
+
+
+
