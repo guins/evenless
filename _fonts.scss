@@ -17,8 +17,8 @@
 @mixin font-face($fontPath, $fontFileName, $fontName, $className:null){
 	@font-face {
 	    font-family: "#{$fontName}";
-	    src: url("#{$fontPath}#{$fontFileName}.eot?") format("eot");
-	    src: url("#{$fontPath}#{$fontFileName}.eot?#iefix") format("opentype"),
+	    src: url("#{$fontPath}#{$fontFileName}.eot?");
+	    src: url("#{$fontPath}#{$fontFileName}.eot?#iefix") format("embedded-opentype"),
 	         url("#{$fontPath}#{$fontFileName}.woff") format("woff"),
 	         url("#{$fontPath}#{$fontFileName}.ttf") format("truetype"),
 	         url("#{$fontPath}#{$fontFileName}.svg##{$fontName}") format("svg");
