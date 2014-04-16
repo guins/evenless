@@ -1,0 +1,43 @@
+// =============================================
+//
+//	Geom Mixins
+//
+// =============================================
+
+//	
+//	@mixin goem-triangle
+//	@param $direction {up|down|right|left} the triangle direction
+//	@param $color {hex|rgb|rgba} the triangle color
+//	@param $width {px} the triangle width in pixels
+//	@param $height {px} the triangle height in pixels
+//
+// 	@desc:
+// 		Create a triangle using border
+//
+@mixin geom-triangle($direction:"up", $color:#000, $width:10px, $height:10px){
+
+	@if( $direction=="up" ){
+		border-left: $width/2 solid transparent;
+		border-right: $width/2 solid transparent;
+		border-top: $height/2 solid transparent;
+		border-bottom: $height/2 solid $color;
+	}
+	@elseif( $direction=="down" ){
+		border-left: $width/2 solid transparent;
+		border-right: $width/2 solid transparent;
+		border-top: $height/2 solid $color;
+		border-bottom: $height/2 solid transparent;
+	}
+	@elseif( $direction=="right" ){
+		border-left: $width/2 solid $color;
+		border-right: $width/2 solid transparent;
+		border-top: $height/2 solid transparent;
+		border-bottom: $height/2 solid transparent;
+	}
+	@elseif( $direction=="left" ){
+		border-left: $width/2 solid transparent;
+		border-right: $width/2 solid $color;
+		border-top: $height/2 solid transparent;
+		border-bottom: $height/2 solid transparent;
+	}
+}
