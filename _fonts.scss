@@ -6,6 +6,23 @@
 
 //	
 //	@mixin font-face
+//	@param $fontName {String} Unique name to identify your font (and use it with "font-family" if you wish)
+//	@param $className {String} Unique class name to extend for futur use (will generate %className)
+//
+// 	@desc:
+// 		Register a new font familly to setup a %fontClassName to extend
+//
+@mixin register-font($fontName, $className){
+	%#{$className} {
+		font-family: $fontName;
+		font-weight: normal;
+	    font-style: normal;
+	    text-decoration: none;
+	}
+}
+
+//	
+//	@mixin font-face
 //	@param $fontPath {String} relative or absolute path to font parent folder
 //	@param $fontFileName {String} font file name without extension (should be the same for each format)
 //	@param $fontName {String} Unique name to identify your font (and use it with "font-family" if you wish)
@@ -27,15 +44,9 @@
 	}
 
 	@if $className {
-		%#{$className} {
-			font-family: $fontName;
-			font-weight: normal;
-		    font-style: normal;
-		    text-decoration: none;
-		}
+		@include register-font($fontName, $className);
 	}
 }
-
 
 //	
 //	@mixin create-icons-classes
@@ -77,8 +88,6 @@
 @mixin relative-font-size($to-size, $from-size: $base-font-size){
 	font-size: $font-unit * $to-size / $from-size;
 }
-
-
 
 
 
