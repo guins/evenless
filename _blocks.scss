@@ -35,7 +35,16 @@
 	width: $width;
 }
 
-
+//	
+//	@mixin block-pseudo
+//
+// 	@desc:
+// 		Create a before/after pseudo block
+//
+@mixin block-pseudo() {
+	display: block;
+	content: '';
+}
 
 
 // =============================================
