@@ -74,6 +74,14 @@
 				}
 			}
 		}
+		%icon-#{$name} {
+			@extend #{$fontClass};
+			content: $code;
+			
+			@if (length($icon)>2) {
+				color: nth($icon, 3) !important;
+			}
+		}
 	}
 }
 
