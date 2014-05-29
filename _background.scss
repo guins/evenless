@@ -8,16 +8,14 @@
 //	@mixin image-at2x
 //	@param $path {String} Full image path without extension
 //	@param $ext {jpg|png|gif} Image extension
-//	@param $w {px|em|%} Image extension
+//	@param $forceSize {Boolean} If we want to set the size of the background according to the image size (default true)
 //
 // 	@desc:
 // 		Add background image with retina replacement image
 //		for high density screen resolutions
 //
-@mixin background-at2x($path, $ext: "jpg") {
+@mixin background-at2x($path, $ext: "jpg", $forceSize: true) {
 	$at1x_fileName: "#{$path}.#{$ext}";
-
-	@include replace-text-with-dimensions($at1x_fileName);
 
 	$at1x_path: image-url($at1x_fileName);
 	$at1x_width: image-width($at1x_fileName);
@@ -25,7 +23,14 @@
 	$at2x_path: image-url("#{$path}@2x.#{$ext}");
 
 	background-image: $at1x_path;
-	background-size: $at1x_width $at1x_height;
+
+	@if $forceSize == true {
+		width: $at1x_width;
+		height: $at1x_height;
+		background-size: $at1x_width $at1x_height;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+	}
 
 	@media #{$media-retina} {
 		background-image: $at2x_path;
